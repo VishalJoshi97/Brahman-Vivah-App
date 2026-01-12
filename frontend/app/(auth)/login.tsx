@@ -1,46 +1,38 @@
-import { View, Text, TextInput, Pressable } from "react-native";
+import { View, Text, TextInput, Pressable, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { useSSO } from "@clerk/clerk-expo";
 
 export default function Login() {
-  const router = useRouter();
+
+const { startSSOFlow } = useSSO();
+const router = useRouter()
+  const handleGoogleSignIn = async () => {
+  try {
+    const { createdSessionId, setActive } = await startSSOFlow({ strategy: "oauth_google" }) 
+    
+    if (setActive && createdSessionId) {
+      setActive({ session: createdSessionId });
+      router.replace("/(tabs)/home")
+    }
+  } catch (error) {
+    console.error("OAuth error:",error);
+  }
+}
+
 
   return (
-    <View style={{ flex: 1, padding: 20, justifyContent: "center" }}>
-      <Text style={{ fontSize: 24, marginBottom: 20 }}>Login</Text>
-
-      <TextInput
-        placeholder="Email"
-        style={{
-          borderWidth: 1,
-          borderColor: "#ccc",
-          padding: 10,
-          marginBottom: 10,
-        }}
-      />
-
-      <TextInput
-        placeholder="Password"
-        secureTextEntry
-        style={{
-          borderWidth: 1,
-          borderColor: "#ccc",
-          padding: 10,
-          marginBottom: 20,
-        }}
-      />
-
-      <Pressable
-        onPress={() => router.replace("/(tabs)/home")}
-        style={{ backgroundColor: "#8B0000", padding: 12, borderRadius: 6 }}
-      >
-        <Text style={{ color: "white", textAlign: "center" }}>Login</Text>
-      </Pressable>
-
-      <Pressable onPress={() => router.push("/(auth)/register")}>
-        <Text style={{ marginTop: 15, textAlign: "center" }}>
-          Don’t have an account? Register
+    <View>
+      <TouchableOpacity
+        onPress={handleGoogleSignIn}
+        activeOpacity={0.9}>
+        <View>
+          <Ionicons name='logo-google'/>
+        </View>
+        <Text>
+        Continue With Google
         </Text>
-      </Pressable>
-    </View>
+      </TouchableOpacity>
+   </View>
   );
 }

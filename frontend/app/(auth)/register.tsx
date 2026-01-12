@@ -25,7 +25,7 @@ export default function Register() {
       />
 
       <Pressable
-        onPress={() => router.replace("/(tabs)/home")}
+        // onPress={() => router.replace("/(tabs)/home")}
         style={{ backgroundColor: "#8B0000", padding: 12, borderRadius: 6 }}
       >
         <Text style={{ color: "white", textAlign: "center" }}>Register</Text>

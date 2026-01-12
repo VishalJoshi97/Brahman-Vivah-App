@@ -1,5 +1,5 @@
 import { View, Text, Pressable } from "react-native";
-import { useRouter } from "expo-router";
+import { useRouter,Stack } from "expo-router";
 
 export default function Home() {
   const router = useRouter();
