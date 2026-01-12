@@ -8,6 +8,6 @@ export default function Index() {
 
   return (
     // <Redirect href="/(onboarding)/welcome" />
-    <Redirect href="/(auth)/login" />
+    <Redirect href="/(onboarding)/welcome" />
   );
 }

@@ -9,13 +9,6 @@ export default function Home() {
       <Text style={{ fontSize: 22, marginBottom: 20 }}>
         Welcome to Brahman Vivah
       </Text>
-
-      <Pressable
-        onPress={() => router.replace("/")}
-        style={{ backgroundColor: "#555", padding: 10, borderRadius: 6 }}
-      >
-        <Text style={{ color: "white" }}>Logout</Text>
-      </Pressable>
     </View>
   );
 }

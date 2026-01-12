@@ -12,7 +12,7 @@ export default function GetStarted() {
       </Text>
 
           {/* power of link-wrap touch->text */}
-      <Link href="/(tabs)/home" replace asChild>
+      <Link href="/(auth)/login" replace asChild>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Continue</Text>
         </TouchableOpacity>
