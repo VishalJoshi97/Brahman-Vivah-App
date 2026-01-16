@@ -22,3 +22,13 @@ apiClient.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 );
+// Response interceptor
+apiClient.interceptors.response.use(
+  (response) => response.data,
+  (error) => {
+    console.error("API Error:", error.response || error.message);
+    return Promise.reject(error);
+  }
+);
+
+export default apiClient;
