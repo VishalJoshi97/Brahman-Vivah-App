@@ -8,3 +8,17 @@ const apiClient = axios.create({
   },
   timeout: 10000,
 });
+// Request interceptor (attach token)
+apiClient.interceptors.request.use(
+  async (config) => {
+    // If using JWT
+    const token = localStorage.getItem("token"); 
+    // In React Native: use AsyncStorage
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
