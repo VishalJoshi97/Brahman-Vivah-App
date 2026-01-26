@@ -45,7 +45,7 @@ export const onboardingStyles = StyleSheet.create({
   },
 
   buttonText: {
-    color: "#FFF",
+    color: "#000",
     fontSize: 16,
     fontWeight: "600",
   },

@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { Link } from "expo-router";
-import { onboardingStyles as styles } from "../../styles/onboard.styles";
+import { onboardingStyles as styles } from "../../../styles/onboard.styles";
 
 export default function Welcome() {
   return (
@@ -12,7 +12,7 @@ export default function Welcome() {
         tradition.
       </Text>
 
-      <Link href="/(onboarding)/features" asChild>
+      <Link href="/(tabs)/home" asChild>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>

@@ -12,7 +12,7 @@ export default function Profile() {
       />
         <Text style={{ fontSize: 20 }}>Profile Page</Text>
       <Pressable
-        onPress={() => router.replace("/(onboarding)/welcome")}
+        onPress={() => router.replace("/(onboarding)/(intro)/loading")}
         style={{ backgroundColor: "#555", padding: 10, borderRadius: 6 }}
       >
         <Text style={{ color: "white" }}>Logout</Text>

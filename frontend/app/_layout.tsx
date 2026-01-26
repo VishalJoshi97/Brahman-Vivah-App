@@ -6,15 +6,20 @@ import InitialLayout from "@/components/initialLayout";
 
 export default function RootLayout() {
   return (
-    <ClerkProvider tokenCache={tokenCache}>
-      <ClerkLoaded>
+    // <ClerkProvider tokenCache={tokenCache}>
+    //   <ClerkLoaded>
 
-    <SafeAreaProvider>
-      <SafeAreaView style={{flex:1,backgroundColor:"pink"}}>
-      <InitialLayout/>
-        </SafeAreaView>
-    </SafeAreaProvider>
-          </ClerkLoaded>
-    </ClerkProvider>
+    // <SafeAreaProvider>
+    //   <SafeAreaView style={{flex:1,backgroundColor:"pink"}}>
+    //   {/* <InitialLayout/> */}
+    //     </SafeAreaView>
+    // </SafeAreaProvider>
+    //       </ClerkLoaded>
+    // </ClerkProvider>
+    <Stack
+      screenOptions={{
+        headerShown: false,
+      }}
+    />
   );
 }

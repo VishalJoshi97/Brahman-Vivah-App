@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { Link } from "expo-router";
-import { onboardingStyles as styles } from "../../styles/onboard.styles";
+import { onboardingStyles as styles } from "../../../styles/onboard.styles";
  
 export default function Features() {
   return (
@@ -13,7 +13,7 @@ export default function Features() {
         <Text style={styles.featureItem}>✔ Family-Friendly Platform</Text>
       </View>
 
-      <Link href="/(onboarding)/get-started" asChild>
+      <Link href="/(onboarding)/(intro)/getstarted" asChild>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>
