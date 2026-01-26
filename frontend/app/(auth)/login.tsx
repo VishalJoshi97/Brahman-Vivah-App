@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Pressable, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useSSO } from "@clerk/clerk-expo";

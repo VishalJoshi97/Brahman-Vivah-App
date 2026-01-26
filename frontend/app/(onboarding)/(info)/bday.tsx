@@ -1,19 +1,27 @@
 import { View, Text, TextInput } from "react-native";
 import React from "react";
 import { Link } from "expo-router";
+import Shloka from "@/components/Shloka";
+import { SHLOKAS } from "@/constants/shlokas";
 
-const Bday = () => {
+export default function BdayScreen() {
   return (
-    <View>
-      <Text>May we know your b-day?</Text>
+    <View style={{ padding: 20 }}>
+      <Shloka
+        shloka={SHLOKAS.bday.shloka}
+        meaning={SHLOKAS.bday.meaning}
+        source={SHLOKAS.bday.source}
+      />
+
+      <Text style={{ fontSize: 22, fontWeight: "600" }}>
+        What is your Birthday?
+      </Text>
       <TextInput
-        placeholder="Enter Your B-day"
+        placeholder="Enter Your b-DAY"
         secureTextEntry
         style={{ borderWidth: 1, padding: 10, marginBottom: 20 }}
       />
       <Link href="/(onboarding)/(info)/gender">ENTER</Link>
     </View>
   );
-};
-
-export default Bday;
+}

@@ -1,19 +1,27 @@
 import { View, Text, TextInput } from "react-native";
-import React from 'react'
+import React from "react";
 import { Link } from "expo-router";
+import Shloka from "@/components/Shloka";
+import { SHLOKAS } from "@/constants/shlokas";
 
-const Name = () => {
+export default function NameScreen() {
   return (
-    <View>
-      <Text>May we know your name?</Text>
-       <TextInput
-              placeholder="Enter Your Name"
-              secureTextEntry
-              style={{ borderWidth: 1, padding: 10, marginBottom: 20 }}
+    <View style={{ padding: 20 }}>
+      <Shloka
+        shloka={SHLOKAS.name.shloka}
+        meaning={SHLOKAS.name.meaning}
+        source={SHLOKAS.name.source}
       />
-      <Link href='/(onboarding)/(info)/bday'>ENTER</Link>
-    </View>
-  )
-}
 
-export default Name
+      <Text style={{ fontSize: 22, fontWeight: "600" }}>
+        What is your full name?
+      </Text>
+      <TextInput
+        placeholder="Enter Your Full Name"
+        secureTextEntry
+        style={{ borderWidth: 1, padding: 10, marginBottom: 20 }}
+      />
+      <Link href="/(onboarding)/(info)/bday">ENTER</Link>
+    </View>
+  );
+}

@@ -1,15 +1,19 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, } from "react-native";
+import React from "react";
 import { Link } from "expo-router";
+import Shloka from "@/components/Shloka";
+import { SHLOKAS } from "@/constants/shlokas";
 
-const Hobbies = () => {
-  return (
-    <View>
-      <Text>Hobbies</Text>
-      {/* <Link href="/(onboarding)/(info)/interest">ENTER</Link> */}
-      <Link href="/(onboarding)/(info)/langs">ENTER</Link>
-    </View>
-  );
-}
+ export default function HobbiesScreen() {
+   return (
+     <View style={{ padding: 24 }}>
+       <Shloka {...SHLOKAS.hobbies} />
 
-export default Hobbies
+       <Text style={{ fontSize: 22, fontWeight: "600" }}>Your hobbies</Text>
+
+       <Text style={{ marginTop: 8 }}>Share what you enjoy doing.</Text>
+       <Link href="/(onboarding)/(info)/langs">ENTER</Link>
+     </View>
+   );
+ }
+

@@ -1,8 +1,8 @@
 import { View, Text, TextInput, Pressable } from "react-native";
-import { Link, useRouter } from "expo-router";
+import { Link,  } from "expo-router";
 
 export default function Register() {
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
     <View style={{ flex: 1, padding: 20, justifyContent: "center" }}>
