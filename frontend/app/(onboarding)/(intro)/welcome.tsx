@@ -1,7 +1,7 @@
 import { View, Text, Image, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
-import styles from "../../../styles/welcome.styles";
+import styles from "@/styles/welcome.styles";
 
 export default function Welcome() {
   return (
@@ -9,7 +9,7 @@ export default function Welcome() {
       <View style={styles.wrapper}>
         {/* Hero Image */}
         <Image
-          source={require("../../../assets/svgs/image.png")}
+          source={require("@/assets/svgs/image.png")}
           style={styles.image}
         />
 

@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { Link } from "expo-router";
-import { onboardingStyles as styles } from "../../../styles/onboard.styles";
+import { onboardingStyles as styles } from "../styles/onboard.styles";
  
 export default function Features() {
   return (

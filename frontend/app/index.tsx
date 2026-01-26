@@ -1,5 +1,5 @@
-import { View, Text, Pressable } from "react-native";
-import { Redirect, useRouter } from "expo-router";
+// import { View, Text, Pressable } from "react-native";
+import { Redirect,   } from "expo-router";
 
 //WHICH screen opens first
 //Usually just redirects-route
