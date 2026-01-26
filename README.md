@@ -1,2 +1,2 @@
 # Brahman-Vivah-App
-A niche dating app.
+A niche dating app for brahmans.
