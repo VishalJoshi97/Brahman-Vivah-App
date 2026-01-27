@@ -17,7 +17,7 @@ export default function NameScreen() {
         What is your full name?
       </Text>
       <TextInput
-        placeholder="Enter Your Full Name"
+        placeholder="Enter Your Full Name"  
         secureTextEntry
         style={{ borderWidth: 1, padding: 10, marginBottom: 20 }}
       />
