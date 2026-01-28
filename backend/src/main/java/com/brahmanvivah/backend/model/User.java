@@ -25,7 +25,7 @@
      private String password;
 
      @Enumerated(EnumType.STRING)
-     private Role role =Role.User;
+     private Role role =Role.USER;
 
      enum Role{
          USER,

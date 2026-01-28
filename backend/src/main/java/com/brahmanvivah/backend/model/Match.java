@@ -14,7 +14,7 @@ public class Match {
 
     //many matches to one profile
     @ManyToOne
-    //all details of profile
+    //all details(columns) of profile
     private Profile profile;
 
     //at least one match
