@@ -16,6 +16,8 @@
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
 
+     private String bday;
+
      @Column(unique = true,nullable = false)
      private String email;
 
