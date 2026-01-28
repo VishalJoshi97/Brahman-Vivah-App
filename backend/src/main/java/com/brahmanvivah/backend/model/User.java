@@ -1,23 +1,39 @@
-package com.brahmanvivah.backend.model;
+ package com.brahmanvivah.backend.model;
 
-import jakarta.persistence.*;
-import lombok.*;
+ import jakarta.persistence.*;
+ import lombok.AllArgsConstructor;
+ import lombok.Getter;
+ import lombok.NoArgsConstructor;
+ import lombok.Setter;
 
-@Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "users")
-public class User {
+ @Entity
+ @Table(name="users")
+ @Getter @Setter
+ @NoArgsConstructor @AllArgsConstructor
+ public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private Long id;
 
-    private String fullName;
-    private String email;
-    private String password;
-    private String gotra;
-    private int age;
+     @Column(unique = true,nullable = false)
+     private String email;
+
+     @Column(unique = true)
+     private String phone;
+
+     private String password;
+
+     @Enumerated(EnumType.STRING)
+     private Role role =Role.User;
+
+     enum Role{
+         USER,
+         ADMIN
+     }
+
+     private boolean isVerified;
+
+     private boolean isActive;
+
 }
