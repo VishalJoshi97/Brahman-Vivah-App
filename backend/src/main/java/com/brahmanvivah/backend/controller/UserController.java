@@ -21,7 +21,13 @@ public class UserController {
     }
     @PostMapping
     public User createUser(@RequestBody User user){
-        return userService.register(user);
+        return userService.createUser(user);
+    }
+
+    //for onboarding
+    @PostMapping("/register")
+    public List<User> registerUser(){
+        return userService.getRegisteredUsers();
     }
 
     @GetMapping("{id}")

@@ -41,7 +41,11 @@ public class UserService {
         return userRepository.findByPassword(password);
     }
 
-    public User register(User user) {
+    public User createUser(User user) {
         return userRepository.save(user);
+    }
+
+    public List<User> getRegisteredUsers() {
+        return userRepository.findAll();
     }
 }
