@@ -1,5 +1,7 @@
 package com.brahmanvivah.backend.controller;
 
+import com.brahmanvivah.backend.dto.UserRegisterRequest;
+import com.brahmanvivah.backend.dto.UserResponse;
 import com.brahmanvivah.backend.model.User;
 import com.brahmanvivah.backend.service.UserService;
 import lombok.AllArgsConstructor;
@@ -26,8 +28,8 @@ public class UserController {
 
     //for onboarding
     @PostMapping("/register")
-    public List<User> registerUser(){
-        return userService.getRegisteredUsers();
+    public UserResponse registerUser(UserRegisterRequest request){
+        return userService.getRegisteredUsers(request);
     }
 
     @GetMapping("{id}")

@@ -32,7 +32,7 @@
      @Enumerated(EnumType.STRING)
      private Role role =Role.USER;
 
-     enum Role{
+     public enum Role{
          USER,
          ADMIN
      }
