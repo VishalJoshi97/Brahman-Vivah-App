@@ -27,7 +27,7 @@ public class ProfileService {
     }
 
     //get profile by subcaste
-    public List<Profile> getProfileBySubCast(String subCaste){
+    public List<Profile> getProfileBySubCaste(String subCaste){
         return profileRepository.findBySubCaste(subCaste);
     }
     //get profile by gotra
@@ -35,8 +35,13 @@ public class ProfileService {
         return profileRepository.findByCity(gotra);
     }
 
-    //save profile inbuilt method
+    //-------------------->save profile  <-----------------
     public Profile saveProfile(Profile profile){
-        return profileRepository.save(profile);
+        return profileRepository.save(profile);//inbuilt method
     }
+
+    public List<Profile> getProfileByCity(String city) {
+        return profileRepository.findByCity(city);
+    }
+
 }
