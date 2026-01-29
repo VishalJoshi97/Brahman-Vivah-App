@@ -10,12 +10,15 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/users")
-@AllArgsConstructor
+//@AllArgsConstructor
 public class UserController {
 
     //Constructor Injection
     private final UserService userService;
 
+    public UserController(UserService userService){
+        this.userService=userService;
+    }
     @PostMapping
     public User createUser(@RequestBody User user){
         return userService.register(user);

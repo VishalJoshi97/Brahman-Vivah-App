@@ -14,8 +14,8 @@ public class Profile {
     private Long id;
 
     //join with user
-    @OneToOne
-    @JoinColumn(name="user_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id",nullable = false)
     private User user;
 
     private String fullName;
@@ -36,7 +36,7 @@ public class Profile {
     @Column(length = 1000)
     private String bio;
 
-    enum Gender{
+    public enum Gender{
         Male,
         Female
     }

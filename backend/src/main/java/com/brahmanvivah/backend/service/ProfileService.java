@@ -1,19 +1,27 @@
 package com.brahmanvivah.backend.service;
 
+import com.brahmanvivah.backend.dto.ProfileRequest;
 import com.brahmanvivah.backend.model.Profile;
+import com.brahmanvivah.backend.model.User;
 import com.brahmanvivah.backend.repository.ProfileRepository;
+import com.brahmanvivah.backend.repository.UserRepository;
+import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+
 public class ProfileService {
 
     private final ProfileRepository profileRepository;
+    private final UserRepository userRepository;
 
     //Constructor Injection
-    public ProfileService(ProfileRepository profileRepository){
+    public ProfileService(ProfileRepository profileRepository, UserRepository userRepository){
         this.profileRepository=profileRepository;
+        this.userRepository = userRepository;
     }
 
     //get profile by id
@@ -32,7 +40,8 @@ public class ProfileService {
     }
     //get profile by gotra
     public List<Profile> getProfileByGotra(String gotra){
-        return profileRepository.findByCity(gotra);
+        System.out.println("Gotra: "+gotra);
+        return profileRepository.findByGotra(gotra);
     }
 
     //-------------------->save profile  <-----------------
@@ -42,6 +51,35 @@ public class ProfileService {
 
     public List<Profile> getProfileByCity(String city) {
         return profileRepository.findByCity(city);
+    }
+
+    @Transactional
+    public Profile createProfile(Long userId, ProfileRequest request) {
+
+        // 1️⃣ Fetch managed User (VERY IMPORTANT)
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // 2️⃣ Optional: prevent duplicate profile
+        if (profileRepository.existsByUser(user)) {
+            throw new RuntimeException("Profile already exists for this user");
+        }
+
+        // 3️⃣ Create profile and attach user
+        Profile profile = new Profile();
+        profile.setUser(user); // ⭐ THIS sets user_id
+
+        profile.setFullName(request.getFullName());
+        profile.setGender(request.getGender());
+        profile.setCaste(request.getCaste());
+        profile.setSubCaste(request.getSubCaste());
+        profile.setGotra(request.getGotra());
+        profile.setCity(request.getCity());
+        profile.setState(request.getState());
+        profile.setBio(request.getBio());
+
+        // 4️⃣ Save
+        return profileRepository.save(profile);
     }
 
 }

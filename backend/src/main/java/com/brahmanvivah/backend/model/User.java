@@ -16,6 +16,9 @@
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
 
+
+     private String name;
+
      private String bday;
 
      @Column(unique = true,nullable = false)
@@ -33,7 +36,6 @@
          USER,
          ADMIN
      }
-
      private boolean isVerified;
 
      private boolean isActive;

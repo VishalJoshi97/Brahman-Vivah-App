@@ -1,5 +1,6 @@
 package com.brahmanvivah.backend.controller;
 
+import com.brahmanvivah.backend.dto.ProfileRequest;
 import com.brahmanvivah.backend.model.Profile;
 import com.brahmanvivah.backend.service.ProfileService;
 import lombok.AllArgsConstructor;
@@ -14,10 +15,14 @@ public class ProfileController {
 
     private final ProfileService profileService;
 
-    @PostMapping
-    public Profile createProfile(@RequestBody Profile profile){
-        return profileService.saveProfile(profile);
+    @PostMapping("/{userId}")
+    public Profile createProfile(
+            @PathVariable Long userId,
+            @RequestBody ProfileRequest request) {
+
+        return profileService.createProfile(userId, request);
     }
+
 
     @GetMapping("{id}")
     public Profile getProfile(@PathVariable Long id){
@@ -26,6 +31,7 @@ public class ProfileController {
 
     @GetMapping("/city/{city}")
     public List<Profile> getProfileByCity(@PathVariable String city){
+        System.out.println("City: "+city);
         return profileService.getProfileByCity(city);
     }
 
