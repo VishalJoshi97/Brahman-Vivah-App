@@ -1,6 +1,7 @@
-package com.brahmanvivah.repository;
+package com.brahmanvivah.backend;
 
-import com.brahmanvivah.model.User;
+
+import com.brahmanvivah.backend.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
