@@ -1,6 +1,8 @@
 package com.brahmanvivah.backend.service;
 
+//from dto
 import com.brahmanvivah.backend.dto.ProfileRequest;
+
 import com.brahmanvivah.backend.model.Profile;
 import com.brahmanvivah.backend.model.User;
 import com.brahmanvivah.backend.repository.ProfileRepository;
@@ -23,6 +25,33 @@ public class ProfileService {
         this.userRepository = userRepository;
     }
 
+    //add new profile to repository=>model
+    @Transactional
+    public Profile createProfile(Long userId, ProfileRequest request) {//dto=>repository=>model
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (profileRepository.existsByUser(user)) {
+            throw new RuntimeException("Profile already exists for this user");
+        }
+
+        //Create profile and attach user
+        Profile profile = new Profile();
+        profile.setUser(user); // ⭐ THIS sets user_id
+
+        profile.setFullName(request.getFullName());
+        profile.setGender(request.getGender());
+        profile.setCaste(request.getCaste());
+        profile.setSubCaste(request.getSubCaste());
+        profile.setGotra(request.getGotra());
+        profile.setCity(request.getCity());
+        profile.setState(request.getState());
+        profile.setBio(request.getBio());
+
+        return profileRepository.save(profile);
+    }
+
     //get profile by id
     public Profile getProfileById(Long id){
         return profileRepository.findById(id)
@@ -43,42 +72,8 @@ public class ProfileService {
         return profileRepository.findByGotra(gotra);
     }
 
-    //-------------------->save profile  <-----------------
-    public Profile saveProfile(Profile profile){
-        return profileRepository.save(profile);//inbuilt method
-    }
-
     public List<Profile> getProfileByCity(String city) {
         return profileRepository.findByCity(city);
-    }
-
-    @Transactional
-    public Profile createProfile(Long userId, ProfileRequest request) {
-
-        // 1️⃣ Fetch managed User (VERY IMPORTANT)
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        // 2️⃣ Optional: prevent duplicate profile
-        if (profileRepository.existsByUser(user)) {
-            throw new RuntimeException("Profile already exists for this user");
-        }
-
-        // 3️⃣ Create profile and attach user
-        Profile profile = new Profile();
-        profile.setUser(user); // ⭐ THIS sets user_id
-
-        profile.setFullName(request.getFullName());
-        profile.setGender(request.getGender());
-        profile.setCaste(request.getCaste());
-        profile.setSubCaste(request.getSubCaste());
-        profile.setGotra(request.getGotra());
-        profile.setCity(request.getCity());
-        profile.setState(request.getState());
-        profile.setBio(request.getBio());
-
-        // 4️⃣ Save
-        return profileRepository.save(profile);
     }
 
 }

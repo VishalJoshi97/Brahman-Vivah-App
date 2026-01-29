@@ -21,30 +21,54 @@ public class UserController {
     public UserController(UserService userService){
         this.userService=userService;
     }
-    @PostMapping
-    public User createUser(@RequestBody User user){
-        return userService.createUser(user);
+
+    //convert DTO according to Entity
+    private UserResponse toResponse(User user) {
+        UserResponse res = new UserResponse();
+        res.setId(user.getId());
+        res.setName(user.getName());
+        res.setEmail(user.getEmail());
+        res.setPhone(user.getPhone());
+        return res;
     }
 
     //for onboarding
     @PostMapping("/register")
-    public UserResponse registerUser(UserRegisterRequest request){
-        return userService.getRegisteredUsers(request);
+    public UserResponse registerUser( @RequestBody  UserRegisterRequest request){
+//        return userService.registerUser(request);
+        User user = userService.registerUser(request);
+        return toResponse(user);
     }
 
+//    @GetMapping("{id}")
+//    public Optional<User> getUser(@PathVariable Long id){
+//        return userService.getUserById(id);
+//    }
+
+    //unique
     @GetMapping("{id}")
-    public Optional<User> getUser(@PathVariable Long id){
-        return userService.getUserById(id);
+    //it's an optional method in service layer
+    public UserResponse getUserById(@PathVariable Long id) {
+        User user = userService.getUserById(id)//same data type
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return toResponse(user);
     }
 
+    //can be same names
     @GetMapping("/name/{name}")
-    public List<User> getUserByName(@PathVariable String name){
-        return userService.getUserByName(name);
+   public List<UserResponse> getUserByName(@PathVariable String name){
+      return  userService.getUserByName(name)
+              .stream()
+              .map(this::toResponse)
+              .toList();
+
     }
 
+    //unique
     @GetMapping("/email/{email}")
-    public Optional<User> getUserByEmail(@PathVariable String email){
-        return userService.getUserByEmail(email);
+    public UserResponse getUserByEmail(@PathVariable String email){
+        User user =userService.getUserByEmail(email).orElseThrow(() -> new RuntimeException("User Email not found"));
+        return  toResponse(user);
     }
 
 }

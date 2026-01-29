@@ -18,10 +18,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    //constructor Injection
-//    public UserService(UserRepository userRepository) {
-//        this.userRepository = userRepository;
-//    }
+    //add new user to repository=>model
     public User registerUser(UserRegisterRequest request){
         if (userRepository.existsByEmail(request.getEmail())){
             throw new RuntimeException(("Email already Exists."));
@@ -65,15 +62,6 @@ public class UserService {
     public List<User> getUserByPhone(String phone){
         return userRepository.findByPhone(phone);
     }
-
-    public List<User> getUserByPassword(String password){
-        return userRepository.findByPassword(password);
-    }
-
-    public User createUser(User user) {
-        return userRepository.save(user);
-    }
-
 
     public List<User> getRegisteredUsers() {
         return userRepository.findAll();

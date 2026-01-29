@@ -13,9 +13,9 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //join with user
+    //one profile to one user
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id",nullable = false)
+    @JoinColumn(name="user_id",nullable = false)//join with user_is as fk
     private User user;
 
     private String fullName;

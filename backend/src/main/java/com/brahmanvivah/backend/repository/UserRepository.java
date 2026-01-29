@@ -20,6 +20,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findByPassword(String password);
 
+    //for register
     boolean existsByEmail(String email);
 
     boolean existsByPhone(String phone);
