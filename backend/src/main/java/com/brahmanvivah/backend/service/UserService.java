@@ -32,7 +32,7 @@ public class UserService {
         user.setName(request.getName());
         user.setEmail(request.getEmail());
         user.setPhone(request.getPhone());
-
+        user.setBday(request.getBday());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 
         user.setRole(User.Role.USER);
