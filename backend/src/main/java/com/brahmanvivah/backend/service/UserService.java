@@ -21,27 +21,43 @@ public class UserService {
     //add new user to repository=>model
     //any changes in service=>updates repo=>updates db
     public User registerUser(UserRegisterRequest request){
-        if (userRepository.existsByEmail(request.getEmail())){
-            throw new RuntimeException(("Email already Exists."));
+
+        User user;
+        if(request.getId()==null) {
+            if (request.getEmail() != null && userRepository.existsByEmail(request.getEmail())) {
+                throw new RuntimeException(("Email already Exists."));
+            }
+
+            if (request.getPhone() != null && userRepository.existsByPhone(request.getPhone())) {
+                throw new RuntimeException(("Phone already Exists."));
+            }
+
+            user = new User();
+            user.setEmail(request.getEmail());
+            user.setPhone(request.getPhone());
+            user.setRole(User.Role.USER);
+            user.setActive(true);
+            user.setVerified(false);
+        }
+        else {
+            //optional=>unique
+            user=userRepository.findById(request.getId())
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+
         }
 
-        if(userRepository.existsByPhone(request.getPhone())){
-            throw new RuntimeException(("Phone already Exists."));
+        if (request.getName() != null){
+            user.setName(request.getName());
         }
 
-        User user=new User();
-        user.setName(request.getName());
-        user.setEmail(request.getEmail());
-        user.setPhone(request.getPhone());
-        user.setBday(request.getBday());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        if (request.getBday() != null){
+            user.setName(request.getBday());
+        }
 
-        user.setRole(User.Role.USER);
-        user.setActive(true);
-        user.setVerified(false);
-
+        if (request.getPassword() != null) {
+            user.setPassword(passwordEncoder.encode(request.getPassword()));
+        }
         return userRepository.save(user);
-
     }
 
     //optional=>unique
