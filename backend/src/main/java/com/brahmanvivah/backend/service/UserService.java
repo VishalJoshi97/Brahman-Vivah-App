@@ -19,6 +19,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     //add new user to repository=>model
+    //any changes in service=>updates repo=>updates db
     public User registerUser(UserRegisterRequest request){
         if (userRepository.existsByEmail(request.getEmail())){
             throw new RuntimeException(("Email already Exists."));
@@ -43,6 +44,7 @@ public class UserService {
 
     }
 
+    //optional=>unique
     public Optional<User> getUserById(Long id){
         return userRepository.findById(id);//given by Spring boot
     }
@@ -55,6 +57,7 @@ public class UserService {
         return userRepository.findByBday(bday);
     }
 
+    //optional=>unique
     public Optional<User> getUserByEmail(String email){
         return userRepository.findByEmail(email);
     }

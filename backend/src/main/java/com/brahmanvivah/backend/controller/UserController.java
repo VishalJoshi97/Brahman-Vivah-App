@@ -46,7 +46,7 @@ public class UserController {
 //        return userService.getUserById(id);
 //    }
 
-    //unique
+    //optional=>unique
     @GetMapping("{id}")
     //it's an optional method in service layer
     public UserResponse getUserById(@PathVariable Long id) {
@@ -65,10 +65,11 @@ public class UserController {
 
     }
 
-    //unique
+    //optional=>unique
     @GetMapping("/email/{email}")
     public UserResponse getUserByEmail(@PathVariable String email){
-        User user =userService.getUserByEmail(email).orElseThrow(() -> new RuntimeException("User Email not found"));
+        User user =userService.getUserByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User Email not found"));
         return  toResponse(user);
     }
 

@@ -26,6 +26,7 @@ public class ProfileService {
     }
 
     //add new profile to repository=>model
+    //any changes in service=>save to repo=>updates db
     @Transactional
     public Profile createProfile(Long userId, ProfileRequest request) {//dto=>repository=>model
 
@@ -37,6 +38,7 @@ public class ProfileService {
         }
 
         //Create profile and attach user
+        //repository=>model
         Profile profile = new Profile();
         profile.setUser(user); // ⭐ THIS sets user_id
 
