@@ -8,7 +8,7 @@ export default function Index() {
 
   return (
     // <Redirect href="/(onboarding)/welcome" />
-    // <Redirect href="/(onboarding)/(intro)/loading" />
-    <Redirect href="/(onboarding)/(info)/name"/>
+    <Redirect href="/(onboarding)/(intro)/splash" />
+    // <Redirect href="/(onboarding)/(info)/name"/>
   );
 }

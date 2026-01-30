@@ -18,3 +18,18 @@ export const registerUser=async (payload)=>{
 
     return response.json()
 }
+
+//registerUser({email,phone,password})
+//this type of data is received
+// {
+// id by jpa
+//email
+//phone
+//password
+// }
+
+// {
+    //..
+    //name
+    //bday
+// }

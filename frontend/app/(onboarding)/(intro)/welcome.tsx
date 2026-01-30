@@ -37,7 +37,7 @@ export default function Welcome() {
           {/* CTA */}
           <Pressable
             style={styles.primaryButton}
-            onPress={() => router.push("/(auth)/createAcc")}
+            onPress={() =>router.push("/(auth)/createAcc")}
           >
             <Text style={styles.primaryButtonText}>Get Started</Text>
           </Pressable>
