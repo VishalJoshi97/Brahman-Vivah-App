@@ -15,6 +15,7 @@ import java.util.List;
 @Service
 public class ProfileService {
 
+    //onboarding service layer
     private final ProfileRepository profileRepository;
     private final UserRepository userRepository;
 
@@ -32,7 +33,7 @@ public class ProfileService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        if (profileRepository.existsByUser(user)) {
+        if (profileRepository.existsByUser(user.getId())) {
             throw new RuntimeException("Profile already exists for this user");
         }
 

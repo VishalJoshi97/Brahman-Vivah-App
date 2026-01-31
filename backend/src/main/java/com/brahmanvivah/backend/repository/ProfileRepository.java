@@ -53,9 +53,17 @@ public interface ProfileRepository extends JpaRepository<Profile,Long> {
 
     //Edit profile
 
+    List<Profile> findByFullName(String fullName);
+
+    List<Profile> findByHeight(String height);
+
+    List<Profile> findByWeight(String weight);
+
     List<Profile> findByState(String state);
 
     List<Profile> findByCity(String city);
+
+    List<Profile> findByBio(String bio);
 
     boolean existsByUser(Long userId);
 }
