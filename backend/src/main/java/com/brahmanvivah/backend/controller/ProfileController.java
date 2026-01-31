@@ -1,7 +1,7 @@
 package com.brahmanvivah.backend.controller;
 
-import com.brahmanvivah.backend.dto.ProfileRequest;
-import com.brahmanvivah.backend.dto.ProfileResponse;
+import com.brahmanvivah.backend.dto.ProfileOnBoardingRequest;
+import com.brahmanvivah.backend.dto.ProfileOnBoardingResponse;
 import com.brahmanvivah.backend.model.Profile;
 import com.brahmanvivah.backend.service.ProfileService;
 import lombok.AllArgsConstructor;
@@ -20,8 +20,8 @@ public class ProfileController {
 
     //covert profile DTO according to profile Entity
 
-    private ProfileResponse toResponse(Profile profile){
-        ProfileResponse response=new ProfileResponse();
+    private ProfileOnBoardingResponse toResponse(Profile profile){
+        ProfileOnBoardingResponse response=new ProfileOnBoardingResponse();
 
         response.setId(profile.getId());
         response.setFullName(profile.getFullName());
@@ -38,9 +38,9 @@ public class ProfileController {
 
     //create profile only if user exists
     @PostMapping("/{userId}")
-    public ProfileResponse createProfile(
+    public ProfileOnBoardingResponse createProfile(
             @PathVariable Long userId,
-            @RequestBody ProfileRequest request) {
+            @RequestBody ProfileOnBoardingRequest request) {
 
         Profile profile=profileService.createProfile(userId,request);
         return toResponse(profile);
@@ -48,13 +48,13 @@ public class ProfileController {
 
 
     @GetMapping("{id}")
-    public ProfileResponse getProfileById(@PathVariable Long id){
+    public ProfileOnBoardingResponse getProfileById(@PathVariable Long id){
         Profile profile=profileService.getProfileById(id);
         return toResponse(profile);
     }
 
     @GetMapping("/city/{city}")
-    public List<ProfileResponse> getProfileByCity(@PathVariable String city){
+    public List<ProfileOnBoardingResponse> getProfileByCity(@PathVariable String city){
         System.out.println("City: "+city);
        return profileService.getProfileByCity(city)
                .stream()
@@ -64,7 +64,7 @@ public class ProfileController {
     }
 
     @GetMapping("/caste/{caste}")
-    public List<ProfileResponse> getProfileByCaste(@PathVariable String caste){
+    public List<ProfileOnBoardingResponse> getProfileByCaste(@PathVariable String caste){
         System.out.println("City: "+caste);
         return profileService.getProfileByCaste(caste)
                 .stream()
@@ -74,7 +74,7 @@ public class ProfileController {
     }
 
     @GetMapping("/subCaste/{subCaste}")
-    public List<ProfileResponse> getProfileBySubCaste(@PathVariable String subCaste){
+    public List<ProfileOnBoardingResponse> getProfileBySubCaste(@PathVariable String subCaste){
         System.out.println("City: "+subCaste);
         return profileService.getProfileBySubCaste(subCaste)
                 .stream()
@@ -84,7 +84,7 @@ public class ProfileController {
     }
 
     @GetMapping("/gotra/{gotra}")
-    public List<ProfileResponse> getProfileByGotra(@PathVariable String gotra){
+    public List<ProfileOnBoardingResponse> getProfileByGotra(@PathVariable String gotra){
         System.out.println("City: "+gotra);
         return profileService.getProfileByGotra(gotra)
                 .stream()

@@ -5,6 +5,7 @@
  import lombok.Getter;
  import lombok.NoArgsConstructor;
  import lombok.Setter;
+ import org.antlr.v4.runtime.misc.NotNull;
 
  @Entity
  @Table(name="users")
@@ -17,16 +18,19 @@
      private Long id;
 
 
+     @NotNull
      private String name;
 
+     @NotNull
      private String bday;
 
-     @Column(unique = true,nullable = false)
+     @Column(nullable = false, unique = true)
      private String email;
 
-     @Column(unique = true)
+     @Column(nullable = false,unique = true)
      private String phone;
 
+     @NotNull
      private String password;
 
      @Enumerated(EnumType.STRING)

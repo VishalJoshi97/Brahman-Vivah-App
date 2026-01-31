@@ -51,7 +51,7 @@ public class UserService {
         }
 
         if (request.getBday() != null){
-            user.setName(request.getBday());
+            user.setBday(request.getBday());
         }
 
         if (request.getPassword() != null) {

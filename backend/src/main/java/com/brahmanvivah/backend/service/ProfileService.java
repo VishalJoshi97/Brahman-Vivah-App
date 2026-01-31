@@ -1,14 +1,13 @@
 package com.brahmanvivah.backend.service;
 
 //from dto
-import com.brahmanvivah.backend.dto.ProfileRequest;
+import com.brahmanvivah.backend.dto.ProfileOnBoardingRequest;
 
 import com.brahmanvivah.backend.model.Profile;
 import com.brahmanvivah.backend.model.User;
 import com.brahmanvivah.backend.repository.ProfileRepository;
 import com.brahmanvivah.backend.repository.UserRepository;
 import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +27,7 @@ public class ProfileService {
     //add new profile to repository=>model
     //any changes in service=>save to repo=>updates db
     @Transactional
-    public Profile createProfile(Long userId, ProfileRequest request) {//dto=>repository=>model
+    public Profile createProfile(Long userId, ProfileOnBoardingRequest request) {//dto=>repository=>model
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
