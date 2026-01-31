@@ -12,7 +12,10 @@ import java.util.List;
 
 @Getter @Setter
 public class ProfileEditRequest {
-    private List<Education> education=new ArrayList<>();
+    private String fullName;
+    private Integer height;
+    private Integer weight;
+    private List<Education> education;
     private FamilyDetails familyDetails;
     private String state;
     private String city;

@@ -24,6 +24,7 @@ public class Profile {
     //one profile to one user
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id",nullable = false)//join with user_id as fk
+    //owning
     private User user;
 
     @Enumerated(EnumType.STRING)
@@ -74,6 +75,7 @@ public class Profile {
     private Integer weight;
 
     //Note:with other entity relationship
+    //mappedBy = "I have a field, but I don’t own the FK"->inverse side
     @OneToMany(mappedBy = "profile",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Education> education=new ArrayList<>();
 
