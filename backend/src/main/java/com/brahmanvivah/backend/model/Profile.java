@@ -20,6 +20,7 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //---------ownership style-----------
     //one profile to one user
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id",nullable = false)//join with user_id as fk
@@ -65,7 +66,7 @@ public class Profile {
     @Column(nullable = false)
     private Set<Habits> habits=new HashSet<>();
 
-    //Edit profile (with onboarding details)
+    //Edit profile (along with onboarding details)
     private String fullName;
 
     private Integer height;
@@ -73,12 +74,10 @@ public class Profile {
     private Integer weight;
 
     //Note:with other entity relationship
-    @OneToMany
-    @JoinColumn(name = "education_id",nullable = false)//refers to profile_id
+    @OneToMany(mappedBy = "profile",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Education> education=new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "family_details_id",nullable = false)//refers to profile_id
+    @OneToOne(mappedBy = "profile",cascade = CascadeType.ALL,orphanRemoval = true)
     private FamilyDetails familyDetails;
 
     private String state;
@@ -87,5 +86,11 @@ public class Profile {
 
     @Column(length = 1000)
     private String bio;
+
+    @OneToOne(mappedBy = "profile",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Preference preference;
+
+    @OneToOne(mappedBy = "profile",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Profession profession;
 
 }

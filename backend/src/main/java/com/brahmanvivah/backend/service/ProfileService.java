@@ -39,17 +39,12 @@ public class ProfileService {
         //Create profile and attach user
         //repository=>model
         Profile profile = new Profile();
-        profile.setUser(user); // ⭐ THIS sets user_id
 
-        profile.setFullName(request.getFullName());
+        profile.setUser(user); // ⭐ THIS sets user_id
         profile.setGender(request.getGender());
         profile.setCaste(request.getCaste());
         profile.setSubCaste(request.getSubCaste());
         profile.setGotra(request.getGotra());
-        profile.setCity(request.getCity());
-        profile.setState(request.getState());
-        profile.setBio(request.getBio());
-
         return profileRepository.save(profile);
     }
 

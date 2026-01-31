@@ -13,9 +13,9 @@ public class Education {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //many education to one profile
-    @ManyToOne
-    @JoinColumn(name = "profile_id",nullable = false) //add  profile id column to education table
+    //dont use unique for ontomay or many to one
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "profile_id", nullable = false)
     private Profile profile;
 
     private String highestDegree;

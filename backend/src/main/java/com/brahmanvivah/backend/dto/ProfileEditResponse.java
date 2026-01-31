@@ -1,4 +1,23 @@
 package com.brahmanvivah.backend.dto;
 
+import com.brahmanvivah.backend.model.Education;
+import com.brahmanvivah.backend.model.FamilyDetails;
+import com.brahmanvivah.backend.model.Preference;
+import com.brahmanvivah.backend.model.Profession;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter @Setter
 public class ProfileEditResponse {
+    private Long id;
+    private List<Education> education=new ArrayList<>();
+    private FamilyDetails familyDetails;
+    private String state;
+    private String city;
+    private String bio;
+    private Preference preference;
+    private Profession profession;
 }

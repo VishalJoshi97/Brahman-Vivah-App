@@ -15,8 +15,8 @@ public class FamilyDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "profile_id",nullable = false)
+    @OneToOne(optional = false)
+    @JoinColumn(name = "profile_id", nullable = false, unique = true)
     private Profile profile;
 
     private String fatherOccupation;

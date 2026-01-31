@@ -24,14 +24,10 @@ public class ProfileController {
         ProfileOnBoardingResponse response=new ProfileOnBoardingResponse();
 
         response.setId(profile.getId());
-        response.setFullName(profile.getFullName());
         response.setGender(profile.getGender());
         response.setCaste(profile.getCaste());
         response.setSubCaste(profile.getSubCaste());
         response.setGotra(profile.getGotra());
-        response.setCity(profile.getCity());
-        response.setState(profile.getState());
-        response.setBio(profile.getBio());
 
         return response;
     }
