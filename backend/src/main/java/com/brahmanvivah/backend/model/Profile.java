@@ -5,6 +5,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name="profiles")
 @Getter @Setter
@@ -39,14 +44,42 @@ public class Profile {
     @Column(nullable = false)
     private SexualOrientation sexualOrientation;
 
-    @Column(nullable = false)
-    private Hobbies hobbies;
 
+    //Can be more than one
+    @ElementCollection(targetClass = Habits.class,fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(
+            name = "profile_habits",
+            joinColumns = @JoinColumn(name = "profile_id")
+    )
     @Column(nullable = false)
-    private Habits habits;
+    private Set<Hobbies> hobbies=new HashSet<>();
+
+    //Can be more than one
+    @ElementCollection(targetClass = Hobbies.class,fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(
+            name = "profile_hobbies",
+            joinColumns = @JoinColumn(name = "profile_id")
+    )
+    @Column(nullable = false)
+    private Set<Habits> habits=new HashSet<>();
 
     //Edit profile (with onboarding details)
     private String fullName;
+
+    private Integer height;
+
+    private Integer weight;
+
+    //Note:with other entity relationship
+    @OneToMany
+    @JoinColumn(name = "education_id",nullable = false)//refers to profile_id
+    private List<Education> education=new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "family_details_id",nullable = false)//refers to profile_id
+    private FamilyDetails familyDetails;
 
     private String state;
 

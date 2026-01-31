@@ -15,7 +15,7 @@ public class Education {
 
     //many education to one profile
     @ManyToOne
-    @JoinColumn(name = "profile_id") //sdd  profile id column to education table
+    @JoinColumn(name = "profile_id",nullable = false) //add  profile id column to education table
     private Profile profile;
 
     private String highestDegree;
