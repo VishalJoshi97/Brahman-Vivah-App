@@ -45,7 +45,7 @@ public interface ProfileRepository extends JpaRepository<Profile,Long> {
             HAVING COUNT(DISTINCT h)=:size
             """)
 
-    List<Profile> findAllByHabits(
+    List<Profile> findByAllHabits(
             @Param("habits")Set<Habits> habits,
             @Param("size") long size
     );
@@ -57,5 +57,5 @@ public interface ProfileRepository extends JpaRepository<Profile,Long> {
 
     List<Profile> findByCity(String city);
 
-    boolean existsByUser(User user);
+    boolean existsByUser(Long userId);
 }
