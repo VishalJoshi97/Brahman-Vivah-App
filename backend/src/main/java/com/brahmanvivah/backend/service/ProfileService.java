@@ -11,6 +11,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -62,11 +63,18 @@ public class ProfileService {
     }
 
 
+    //extract what u have saved for both-after create and edit profile
     //separate endpoints for each field
     //get profile by id
     public Profile getProfileById(Long id) {
         return profileRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Profile not found"));
+    }
+
+
+    //get profile by gender
+    public List<Profile> getProfileByGender(Gender gender) {
+        return profileRepository.findByGender(gender);
     }
 
     //get profile by caste
@@ -77,6 +85,17 @@ public class ProfileService {
     //get profile by subcaste
     public List<Profile> getProfileBySubCaste(SubCaste subCaste) {
         return profileRepository.findBySubCaste(subCaste);
+    }
+
+
+    //get profile by gotra
+    public List<Profile> getProfileByGotra(Gotra gotra) {
+        return profileRepository.findByGotra(gotra);
+    }
+
+    //get profile by choice
+    public List<Profile> getProfileByChoice(Choice choice) {
+        return profileRepository.findByChoice(choice);
     }
 
     //get profile by sexualOrientation
@@ -104,7 +123,7 @@ public class ProfileService {
         ProfileOnBoardingRequest request = new ProfileOnBoardingRequest();
         Profile profile = new Profile();
 
-        Profile profile1 = profileRepository.findById(pid)
+        Profile profileId = profileRepository.findById(pid)
                 .orElseThrow(() -> new RuntimeException("Profile not found"));
 
 
@@ -156,7 +175,7 @@ public class ProfileService {
 
         //education
 
-//        education.setProfile(profile);//fk: profile_id
+        //education.setProfile(profile);//fk: profile_id
         if(pEditRequest.getEducation()!=null){
             List<Education> educations=pEditRequest.getEducation()
                     .stream()
@@ -174,30 +193,36 @@ public class ProfileService {
         }
 
         //family details
-        familyDetails.setProfile(profile);//fk: profile_id
-        familyDetails.setFatherOccupation(pEditRequest.getFamilyDetails().getFatherOccupation());
-        familyDetails.setMotherOccupation(pEditRequest.getFamilyDetails().getMotherOccupation());
-        familyDetails.setBrothers(pEditRequest.getFamilyDetails().getBrothers());
-        familyDetails.setSisters(pEditRequest.getFamilyDetails().getSisters());
-        familyDetails.setFamilyType(pEditRequest.getFamilyDetails().getFamilyType());
-        familyDetails.setFamilyStatus(pEditRequest.getFamilyDetails().getFamilyStatus());
-
-
+        if(pEditRequest.getFamilyDetails()!=null) {
+            familyDetails.setProfile(profile);//fk: profile_id
+            familyDetails.setFatherOccupation(pEditRequest.getFamilyDetails().getFatherOccupation());
+            familyDetails.setMotherOccupation(pEditRequest.getFamilyDetails().getMotherOccupation());
+            familyDetails.setBrothers(pEditRequest.getFamilyDetails().getBrothers());
+            familyDetails.setSisters(pEditRequest.getFamilyDetails().getSisters());
+            familyDetails.setFamilyType(pEditRequest.getFamilyDetails().getFamilyType());
+            familyDetails.setFamilyStatus(pEditRequest.getFamilyDetails().getFamilyStatus());
+        }
 
         //preference
-        preference.setProfile(profile);//fk: profile_id
-        preference.setMinAge(pEditRequest.getPreference().getMinAge());
-        preference.setMaxAge(pEditRequest.getPreference().getMaxAge());
-        preference.setPreferredCity(pEditRequest.getPreference().getPreferredCity());
-        preference.setPreferredEducation(pEditRequest.getPreference().getPreferredEducation());
+        if(pEditRequest.getPreference()!=null) {
+            preference.setProfile(profile);//fk: profile_id
+            preference.setMinAge(pEditRequest.getPreference().getMinAge());
+            preference.setMaxAge(pEditRequest.getPreference().getMaxAge());
+            preference.setPreferredCity(pEditRequest.getPreference().getPreferredCity());
+            preference.setPreferredEducation(pEditRequest.getPreference().getPreferredEducation());
+        }
 
         //profession
-        profession.setProfile(profile);//fk: profile_id
-        profession.setOccupation(pEditRequest.getProfession().getOccupation());
-        profession.setCompany(pEditRequest.getProfession().getCompany());
-        profession.setAnnualIncome(pEditRequest.getProfession().getAnnualIncome());
+        if(pEditRequest.getProfession()!=null) {
+            profession.setProfile(profile);//fk: profile_id
+            profession.setOccupation(pEditRequest.getProfession().getOccupation());
+            profession.setCompany(pEditRequest.getProfession().getCompany());
+            profession.setAnnualIncome(pEditRequest.getProfession().getAnnualIncome());
+        }
 
-
+        profile.setCity(pEditRequest.getCity());
         return profileRepository.save(profile);
     }
+
+
 }
