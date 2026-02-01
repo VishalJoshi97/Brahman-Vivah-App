@@ -15,7 +15,7 @@ import java.util.Set;
 @Getter @Setter
 public class Profile {
 
-    //onboarding
+    //---------------onboarding--------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -67,7 +67,9 @@ public class Profile {
     @Column(nullable = false)
     private Set<Habits> habits=new HashSet<>();
 
-    //Edit profile (along with onboarding details)
+
+
+    //------------Edit profile (along with onboarding details)---------------
     private String fullName;
 
     private Integer height;
