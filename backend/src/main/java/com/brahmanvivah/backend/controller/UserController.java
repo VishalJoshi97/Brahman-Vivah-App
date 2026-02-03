@@ -1,14 +1,12 @@
 package com.brahmanvivah.backend.controller;
 
-import com.brahmanvivah.backend.dto.UserRegisterRequest;
-import com.brahmanvivah.backend.dto.UserResponse;
+import com.brahmanvivah.backend.dto.user.UserRegisterRequest;
+import com.brahmanvivah.backend.dto.user.UserResponse;
 import com.brahmanvivah.backend.model.User;
 import com.brahmanvivah.backend.service.UserService;
-import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/users")

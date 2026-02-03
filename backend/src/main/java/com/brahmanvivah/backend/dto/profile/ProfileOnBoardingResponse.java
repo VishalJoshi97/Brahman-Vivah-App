@@ -1,4 +1,4 @@
-package com.brahmanvivah.backend.dto;
+package com.brahmanvivah.backend.dto.profile;
 
 import com.brahmanvivah.backend.enums.*;
 import lombok.Getter;
@@ -8,7 +8,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter @Setter
-public class ProfileOnBoardingRequest {
+public class ProfileOnBoardingResponse {
+    private Long id;//profile id
     private Gender gender;
     private Caste caste;
     private SubCaste subCaste;
@@ -17,4 +18,5 @@ public class ProfileOnBoardingRequest {
     private SexualOrientation sexualOrientation;
     private Set<Hobbies> hobbies=new HashSet<>();
     private Set<Habits> habits=new HashSet<>();
+
 }

@@ -1,7 +1,6 @@
 package com.brahmanvivah.backend.service;
 
-import com.brahmanvivah.backend.config.SecurityConfig;
-import com.brahmanvivah.backend.dto.UserRegisterRequest;
+import com.brahmanvivah.backend.dto.user.UserRegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

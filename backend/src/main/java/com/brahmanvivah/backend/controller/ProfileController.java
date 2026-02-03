@@ -1,7 +1,7 @@
 package com.brahmanvivah.backend.controller;
 
-import com.brahmanvivah.backend.dto.ProfileOnBoardingRequest;
-import com.brahmanvivah.backend.dto.ProfileOnBoardingResponse;
+import com.brahmanvivah.backend.dto.profile.ProfileOnBoardingRequest;
+import com.brahmanvivah.backend.dto.profile.ProfileOnBoardingResponse;
 import com.brahmanvivah.backend.enums.*;
 import com.brahmanvivah.backend.model.Profile;
 import com.brahmanvivah.backend.service.ProfileService;
@@ -20,11 +20,7 @@ public class ProfileController {
     @Autowired
     private final ProfileService profileService;
 
-
-    //covert profile DTO according to profile Entity
-
-
-    //OnBoarding Controller
+    //typecasting-covert profile DTO according to profile Entity
     private ProfileOnBoardingResponse toOnBoardResponse(Profile profile){
         ProfileOnBoardingResponse response=new ProfileOnBoardingResponse();
 
@@ -41,6 +37,7 @@ public class ProfileController {
         return response;
     }
 
+
     //create profile only if user exists
     //fk: user_id
     @PostMapping("/{userId}")
@@ -53,6 +50,7 @@ public class ProfileController {
     }
 
 
+    //OnBoarding Controller for both -> onboard and edit
     //get one profile by profile_id
     @GetMapping("{id}")
     public ProfileOnBoardingResponse getProfileById(@PathVariable Long id){
@@ -149,6 +147,10 @@ public class ProfileController {
                 .toList();
 
     }
+
+
+    //+fields edit controller
+
 
 //    @GetMapping("/city/{city}")
 //    public List<ProfileOnBoardingResponse> getProfileByCity(@PathVariable String city){

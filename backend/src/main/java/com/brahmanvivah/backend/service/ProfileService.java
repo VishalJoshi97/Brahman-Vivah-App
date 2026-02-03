@@ -1,8 +1,8 @@
 package com.brahmanvivah.backend.service;
 
 //from dto
-import com.brahmanvivah.backend.dto.ProfileEditRequest;
-import com.brahmanvivah.backend.dto.ProfileOnBoardingRequest;
+import com.brahmanvivah.backend.dto.profile.ProfileEditRequest;
+import com.brahmanvivah.backend.dto.profile.ProfileOnBoardingRequest;
 
 import com.brahmanvivah.backend.enums.*;
 import com.brahmanvivah.backend.model.*;
@@ -26,11 +26,6 @@ public class ProfileService {
     private final PreferenceRepository preferenceRepository;
     private final ProfessionRepository professionRepository;
 
-    //Constructor Injection
-//    public ProfileService(ProfileRepository profileRepository, UserRepository userRepository){
-//        this.profileRepository=profileRepository;
-//        this.userRepository = userRepository;
-//    }
 
     //add new profile to repository=>model
     //any changes in service=>save to repo=>updates db
@@ -72,51 +67,52 @@ public class ProfileService {
     }
 
 
-    //get profile by gender
+    //get profile by gender->from both create and edit
     public List<Profile> getProfileByGender(Gender gender) {
         return profileRepository.findByGender(gender);
     }
 
-    //get profile by caste
+    //get profile by caste->from both create and edit
     public List<Profile> getProfileByCaste(Caste caste) {
         return profileRepository.findByCaste(caste);
     }
 
-    //get profile by subcaste
+    //get profile by subcaste->from both create and edit
     public List<Profile> getProfileBySubCaste(SubCaste subCaste) {
         return profileRepository.findBySubCaste(subCaste);
     }
 
 
-    //get profile by gotra
+    //get profile by gotra->from both create and edit
     public List<Profile> getProfileByGotra(Gotra gotra) {
         return profileRepository.findByGotra(gotra);
     }
 
-    //get profile by choice
+    //get profile by choice->from both create and edit
     public List<Profile> getProfileByChoice(Choice choice) {
         return profileRepository.findByChoice(choice);
     }
 
-    //get profile by sexualOrientation
+    //get profile by sexualOrientation->from both create and edit
     public List<Profile> getProfileBySexualOrientation(SexualOrientation sexualOrientation) {
         System.out.println("SexualOrientation: " + sexualOrientation);
         return profileRepository.findBySexualOrientation(sexualOrientation);
     }
 
-    //get profile by Hobbies
+    //get profile by Hobbies->from both create and edit
     public List<Profile> getProfileByHobbies(Set<Hobbies> hobbies, long size) {
         System.out.println("Hobbies: " + hobbies + "size: " + size);
         return profileRepository.findByAllHobbies(hobbies, size);
     }
 
-    //get profile by Habits
+    //get profile by Habits->from both create and edit
     public List<Profile> getProfileByHabits(Set<Habits> habits, long size) {
         System.out.println("Habits: " + habits + "size: " + size);
         return profileRepository.findByAllHabits(habits, size);
     }
 
 
+    //edit service layer
     @Transactional
     public Profile editProfile(Long pid, ProfileEditRequest pEditRequest) {
 
@@ -167,14 +163,7 @@ public class ProfileService {
         }
 
 
-            profile.setHeight(pEditRequest.getHeight());
-            profile.setWeight(pEditRequest.getWeight());
-            profile.setState(pEditRequest.getState());
-            profile.setCity(pEditRequest.getCity());
-            profile.setBio(pEditRequest.getBio());
-
         //education
-
         //education.setProfile(profile);//fk: profile_id
         if(pEditRequest.getEducation()!=null){
             List<Education> educations=pEditRequest.getEducation()
@@ -220,9 +209,13 @@ public class ProfileService {
             profession.setAnnualIncome(pEditRequest.getProfession().getAnnualIncome());
         }
 
+        profile.setState(pEditRequest.getState());
         profile.setCity(pEditRequest.getCity());
+        profile.setHeight(pEditRequest.getHeight());
+        profile.setWeight(pEditRequest.getWeight());
+        profile.setBio(pEditRequest.getBio());
+
         return profileRepository.save(profile);
     }
-
 
 }
