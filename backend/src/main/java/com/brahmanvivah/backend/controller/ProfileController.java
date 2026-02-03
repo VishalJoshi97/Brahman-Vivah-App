@@ -116,7 +116,7 @@ public class ProfileController {
 
     }
 
-    //choice
+    //sexualOrientation
     @GetMapping("/sexualOrientation")
     public List<ProfileOnBoardingResponse> getProfileBySexualOrientation(@RequestParam SexualOrientation sexualOrientation){
         System.out.println("Choice: "+sexualOrientation);
@@ -150,15 +150,15 @@ public class ProfileController {
 
     }
 
-    @GetMapping("/city/{city}")
-    public List<ProfileOnBoardingResponse> getProfileByCity(@PathVariable String city){
-        System.out.println("City: "+city);
-       return profileService.getProfileByCity(city)
-               .stream()
-               .map(this::toOnBoardResponse)
-               .toList();
-
-    }
+//    @GetMapping("/city/{city}")
+//    public List<ProfileOnBoardingResponse> getProfileByCity(@PathVariable String city){
+//        System.out.println("City: "+city);
+//       return profileService.getProfileByCity(city)
+//               .stream()
+//               .map(this::toOnBoardResponse)
+//               .toList();
+//
+//    }
 
 
 

@@ -2,7 +2,6 @@ package com.brahmanvivah.backend.repository;
 
 import com.brahmanvivah.backend.enums.*;
 import com.brahmanvivah.backend.model.Profile;
-import com.brahmanvivah.backend.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -65,5 +64,5 @@ public interface ProfileRepository extends JpaRepository<Profile,Long> {
 
     List<Profile> findByBio(String bio);
 
-    boolean existsByUser(Long userId);
+    boolean existsByUserId(Long userId);
 }

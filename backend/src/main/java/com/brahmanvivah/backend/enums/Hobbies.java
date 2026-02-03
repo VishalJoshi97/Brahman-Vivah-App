@@ -1,5 +1,8 @@
 package com.brahmanvivah.backend.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum Hobbies {
     TRAVEL("Travel"),
     MUSIC("Music"),
@@ -13,7 +16,4 @@ public enum Hobbies {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
-    }
+}

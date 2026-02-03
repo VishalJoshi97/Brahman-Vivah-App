@@ -11,7 +11,6 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -42,13 +41,14 @@ public class ProfileService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        if (profileRepository.existsByUser(userId)) {
+        if (profileRepository.existsByUserId(userId)) {
             throw new RuntimeException("Profile already exists for this user");
         }
 
         //entity.set(dto.get)
         Profile profile = new Profile();
 
+        //format-test in postman
         profile.setUser(user); //THIS sets user_id
         profile.setGender(request.getGender());
         profile.setCaste(request.getCaste());

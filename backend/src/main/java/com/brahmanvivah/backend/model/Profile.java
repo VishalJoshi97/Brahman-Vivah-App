@@ -31,37 +31,42 @@ public class Profile {
     @Column(nullable = false)
     private Gender gender;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Caste caste;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private SubCaste subCaste;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Gotra gotra;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Choice choice;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private SexualOrientation sexualOrientation;
 
-
-    //Can be more than one
-    @ElementCollection(targetClass = Habits.class,fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    @CollectionTable(
-            name = "profile_habits",
-            joinColumns = @JoinColumn(name = "profile_id")
-    )
-    @Column(nullable = false)
-    private Set<Hobbies> hobbies=new HashSet<>();
 
     //Can be more than one
     @ElementCollection(targetClass = Hobbies.class,fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     @CollectionTable(
             name = "profile_hobbies",
+            joinColumns = @JoinColumn(name = "profile_id")
+    )
+    @Column(nullable = false)
+    private Set<Hobbies> hobbies=new HashSet<>();
+
+    //Can be more than one
+    @ElementCollection(targetClass = Habits.class,fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(
+            name = "profile_habits",
             joinColumns = @JoinColumn(name = "profile_id")
     )
     @Column(nullable = false)

@@ -15,7 +15,4 @@ public enum Habits {
         this.value=value;
     }
 
-    public String getValue(){
-        return value;
-    }
 }
