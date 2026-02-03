@@ -1,5 +1,6 @@
 package com.brahmanvivah.backend.controller;
 
+import com.brahmanvivah.backend.dto.profile.ProfileEditResponse;
 import com.brahmanvivah.backend.dto.profile.ProfileOnBoardingRequest;
 import com.brahmanvivah.backend.dto.profile.ProfileOnBoardingResponse;
 import com.brahmanvivah.backend.enums.*;
@@ -151,16 +152,34 @@ public class ProfileController {
 
     //+fields edit controller
 
+private ProfileEditResponse toEditResponse(Profile profile){
+        ProfileEditResponse editResponse=new ProfileEditResponse();
 
-//    @GetMapping("/city/{city}")
-//    public List<ProfileOnBoardingResponse> getProfileByCity(@PathVariable String city){
-//        System.out.println("City: "+city);
-//       return profileService.getProfileByCity(city)
-//               .stream()
-//               .map(this::toOnBoardResponse)
-//               .toList();
-//
-//    }
+        editResponse.setId(profile.getId());
+        editResponse.setFullName(profile.getFullName());
+        editResponse.setState(profile.getState());
+        editResponse.setCity(profile.getCity());
+        editResponse.setCity(profile.getCity());
+        editResponse.setHeight(profile.getHeight());
+        editResponse.setWeight(profile.getWeight());
+        editResponse.setEducation(profile.getEducation());
+        editResponse.setFamilyDetails(profile.getFamilyDetails());
+        editResponse.setProfession(profile.getProfession());
+        editResponse.setPreference(profile.getPreference());
+
+        return editResponse;
+}
+
+
+    @GetMapping("/city/{city}")
+    public List<ProfileEditResponse> getProfileByCity(@PathVariable String city){
+        System.out.println("City: "+city);
+       return profileService.getProfileByCity(city)
+               .stream()
+               .map(this::toEditResponse)
+               .toList();
+
+    }
 
 
 
