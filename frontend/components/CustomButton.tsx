@@ -1,17 +1,30 @@
-import { Pressable, Text } from "react-native";
+import { TouchableOpacity, Text, ActivityIndicator } from "react-native";
+import { COLORS } from "../../constants/ui";
 
 type Props = {
   title: string;
   onPress: () => void;
+  loading?: boolean;
 };
 
-export default function CustomButton({ title, onPress }: Props) {
+export default function CustomButton({ title, onPress, loading }: Props) {
   return (
-    <Pressable
+    <TouchableOpacity
       onPress={onPress}
-      style={{ backgroundColor: "#8B0000", padding: 12, borderRadius: 6 }}
+      style={{
+        backgroundColor: COLORS.PRIMARY,
+        padding: 14,
+        borderRadius: 10,
+        alignItems: "center",
+        marginVertical: 10,
+      }}
+      disabled={loading}
     >
-      <Text style={{ color: "white", textAlign: "center" }}>{title}</Text>
-    </Pressable>
+      {loading ? (
+        <ActivityIndicator color="#fff" />
+      ) : (
+        <Text style={{ color: "#fff", fontWeight: "bold" }}>{title}</Text>
+      )}
+    </TouchableOpacity>
   );
 }
